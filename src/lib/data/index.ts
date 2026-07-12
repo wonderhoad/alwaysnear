@@ -1,8 +1,2 @@
 export { categories, getCategoryBySlug, categoryMap } from "./categories";
-export {
-  videos,
-  videoMap,
-  getVideoById,
-  getVideosByCategory,
-  getVideoPath,
-} from "./videos";
+export { videos, videoMap, getVideoById, getVideosByCategory } from "./videos";
