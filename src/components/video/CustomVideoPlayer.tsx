@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import type { Video } from "@/lib/types";
@@ -23,9 +23,29 @@ export function CustomVideoPlayer({ video }: CustomVideoPlayerProps) {
   const [hasEnded, setHasEnded] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [useCrossOrigin, setUseCrossOrigin] = useState(true);
 
   const src = video.url;
   const hasVideo = Boolean(video.url);
+  const isRemoteVideo = /^https?:\/\//.test(video.url);
+  const poster = video.thumbnail || undefined;
+
+  useEffect(() => {
+    setVideoLoaded(false);
+    setVideoError(false);
+    setHasEnded(false);
+    setIsPlaying(true);
+    setUseCrossOrigin(true);
+  }, [video.id, src]);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !hasVideo) return;
+
+    void el.play().catch(() => {
+      // Autoplay may be blocked until the user taps a control — existing UI handles this.
+    });
+  }, [hasVideo, video.id, src, useCrossOrigin]);
 
   const togglePause = useCallback(() => {
     const el = videoRef.current;
@@ -64,6 +84,16 @@ export function CustomVideoPlayer({ video }: CustomVideoPlayerProps) {
     router.push(`/video/${nextId}`);
   }, [router, video.id]);
 
+  const handleVideoError = useCallback(() => {
+    if (isRemoteVideo && useCrossOrigin) {
+      setUseCrossOrigin(false);
+      setVideoLoaded(false);
+      return;
+    }
+
+    setVideoError(true);
+  }, [isRemoteVideo, useCrossOrigin]);
+
   return (
     <PageTransition className="relative min-h-[100dvh]">
       <PastelBackground />
@@ -82,17 +112,24 @@ export function CustomVideoPlayer({ video }: CustomVideoPlayerProps) {
               <IPhoneFrame>
                 {hasVideo && !videoError && (
                   <video
+                    key={`${video.id}-${useCrossOrigin ? "cors" : "direct"}`}
                     ref={videoRef}
-                    src={src}
                     className={`absolute inset-0 h-full w-full object-cover ${videoLoaded ? "opacity-100" : "opacity-0"}`}
                     autoPlay
                     playsInline
+                    preload="auto"
+                    poster={poster}
+                    crossOrigin={
+                      isRemoteVideo && useCrossOrigin ? "anonymous" : undefined
+                    }
                     onLoadedData={() => setVideoLoaded(true)}
-                    onError={() => setVideoError(true)}
+                    onError={handleVideoError}
                     onEnded={handleEnded}
                     onPlay={() => setIsPlaying(true)}
                     onPause={() => setIsPlaying(false)}
-                  />
+                  >
+                    <source src={src} type="video/mp4" />
+                  </video>
                 )}
                 {(!hasVideo || !videoLoaded || videoError) && (
                   <VideoPlaceholder

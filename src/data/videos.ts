@@ -1,6 +1,9 @@
 /**
  * Single source of truth for all video metadata.
  * To add or update a video, edit this file only — paste Cloudflare R2 public URLs into `url` and `thumbnail`.
+ *
+ * R2 setup: apply the bucket CORS policy from r2.cors.json (repo root) so cross-origin playback works in browsers and Safari.
+ * Example: wrangler r2 bucket cors set YOUR_BUCKET --file r2.cors.json
  */
 export interface VideoConfig {
   id: string;
@@ -17,7 +20,7 @@ export const videos: VideoConfig[] = [
     title: "с днём рождения",
     category: "birthday",
     description: "особенный день",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/birthday.mp4",
     thumbnail: "",
   },
   {
