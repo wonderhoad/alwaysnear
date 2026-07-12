@@ -100,7 +100,7 @@ export const videos: VideoConfig[] = [
     title: "я вспомнила кое-что смешное",
     category: "make-laugh",
     description: "слушай-ка",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/IMG_6593.MOV",
     thumbnail: "",
   },
   {
@@ -228,7 +228,7 @@ export const videos: VideoConfig[] = [
     title: "если я долго не отвечаю",
     category: "no-reply",
     description: "я всё равно рядом",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/IMG_6591.MOV",
     thumbnail: "",
   },
   {
