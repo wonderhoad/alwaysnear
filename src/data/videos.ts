@@ -36,7 +36,7 @@ export const videos: VideoConfig[] = [
     title: "понюхай меня",
     category: "miss-you",
     description: "я скучала",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/IMG_6546.MOV",
     thumbnail: "",
   },
   {
@@ -52,7 +52,7 @@ export const videos: VideoConfig[] = [
     title: "люблю тебя",
     category: "miss-you",
     description: "очень-очень",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/IMG_6590.MOV",
     thumbnail: "",
   },
   {
@@ -124,7 +124,7 @@ export const videos: VideoConfig[] = [
     title: "келли сегодня",
     category: "kelly",
     description: "мур-мур",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/FILE%202026-07-13%2003%3A38%3A44.mp4",
     thumbnail: "",
   },
   {
@@ -132,7 +132,7 @@ export const videos: VideoConfig[] = [
     title: "келли шалит",
     category: "kelly",
     description: "опять",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/FILE%202026-07-13%2003%3A38%3A34.mp4",
     thumbnail: "",
   },
   {
@@ -220,7 +220,7 @@ export const videos: VideoConfig[] = [
     title: "дом",
     category: "memories",
     description: "там, где мы",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/IMG_6569.MOV",
     thumbnail: "",
   },
   {
