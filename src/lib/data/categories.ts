@@ -2,6 +2,14 @@ import type { Category } from "@/lib/types";
 
 export const categories: Category[] = [
   {
+    id: "birthday",
+    slug: "birthday",
+    icon: "🎂",
+    title: "день рождения",
+    subtitle: "особенный день",
+    videoIds: ["birthday"],
+  },
+  {
     id: "miss-you",
     slug: "miss-you",
     icon: "🤍",
@@ -82,12 +90,12 @@ export const categories: Category[] = [
     videoIds: ["secret"],
   },
   {
-    id: "birthday",
-    slug: "birthday",
-    icon: "🎂",
-    title: "день рождения",
-    subtitle: "особенный день",
-    videoIds: ["birthday"],
+    id: "family-movie",
+    slug: "family-movie",
+    icon: "🎞️",
+    title: "наш фильм",
+    subtitle: "для самых близких",
+    videoIds: ["family_movie"],
   },
   {
     id: "random",

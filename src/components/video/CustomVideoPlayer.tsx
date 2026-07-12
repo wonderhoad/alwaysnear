@@ -4,7 +4,6 @@ import { useCallback, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import type { Video } from "@/lib/types";
-import { getVideoPath } from "@/lib/data/videos";
 import { pickRandomVideoId } from "@/lib/utils/random";
 import { IPhoneFrame } from "@/components/video/IPhoneFrame";
 import { VideoPlaceholder } from "@/components/video/VideoPlaceholder";
@@ -25,7 +24,8 @@ export function CustomVideoPlayer({ video }: CustomVideoPlayerProps) {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
 
-  const src = getVideoPath(video.filename);
+  const src = video.url;
+  const hasVideo = Boolean(video.url);
 
   const togglePause = useCallback(() => {
     const el = videoRef.current;
@@ -80,7 +80,7 @@ export function CustomVideoPlayer({ video }: CustomVideoPlayerProps) {
               className="w-full"
             >
               <IPhoneFrame>
-                {!videoError && (
+                {hasVideo && !videoError && (
                   <video
                     ref={videoRef}
                     src={src}
@@ -94,10 +94,10 @@ export function CustomVideoPlayer({ video }: CustomVideoPlayerProps) {
                     onPause={() => setIsPlaying(false)}
                   />
                 )}
-                {(!videoLoaded || videoError) && (
+                {(!hasVideo || !videoLoaded || videoError) && (
                   <VideoPlaceholder
                     title={video.title}
-                    filename={video.filename}
+                    subtitle={video.subtitle}
                   />
                 )}
               </IPhoneFrame>

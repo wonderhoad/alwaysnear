@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 interface VideoPlaceholderProps {
   title: string;
-  filename: string;
+  subtitle: string;
 }
 
-export function VideoPlaceholder({ title, filename }: VideoPlaceholderProps) {
+export function VideoPlaceholder({ title, subtitle }: VideoPlaceholderProps) {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-pink-soft/20 via-zinc-900 to-blue-soft/20 p-6 text-center">
       <motion.div
@@ -19,7 +19,7 @@ export function VideoPlaceholder({ title, filename }: VideoPlaceholderProps) {
       </motion.div>
       <p className="text-sm font-medium text-white/90">{title}</p>
       <p className="mt-2 text-xs text-white/40">
-        {filename}
+        {subtitle}
       </p>
       <p className="mt-4 max-w-[180px] text-[10px] leading-relaxed text-white/30">
         видео скоро появится здесь

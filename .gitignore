@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# video files — hosted on Cloudflare R2, configured in src/data/videos.ts
+*.mp4
+*.webm
+*.mov
+/public/videos/
