@@ -1,6 +1,9 @@
 /**
  * Single source of truth for all video metadata.
  * To add or update a video, edit this file only — paste Cloudflare R2 public URLs into `url` and `thumbnail`.
+ *
+ * R2 setup: apply the bucket CORS policy from r2.cors.json (repo root) so cross-origin playback works in browsers and Safari.
+ * Example: wrangler r2 bucket cors set YOUR_BUCKET --file r2.cors.json
  */
 export interface VideoConfig {
   id: string;
@@ -17,7 +20,7 @@ export const videos: VideoConfig[] = [
     title: "с днём рождения",
     category: "birthday",
     description: "особенный день",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/birthday.mp4",
     thumbnail: "",
   },
   {
@@ -25,7 +28,7 @@ export const videos: VideoConfig[] = [
     title: "обнимашки",
     category: "miss-you",
     description: "крепко-крепко",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/hug.mp4",
     thumbnail: "",
   },
   {
@@ -89,7 +92,7 @@ export const videos: VideoConfig[] = [
     title: "пойдём гулять",
     category: "be-with-me",
     description: "просто рядом",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/walk.mp4",
     thumbnail: "",
   },
   {
@@ -113,7 +116,7 @@ export const videos: VideoConfig[] = [
     title: "случайный момент",
     category: "make-laugh",
     description: "просто я",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/random.mp4",
     thumbnail: "",
   },
   {
@@ -177,7 +180,7 @@ export const videos: VideoConfig[] = [
     title: "история на ночь",
     category: "sleep",
     description: "закрой глаза",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/bedtime_story.mp4",
     thumbnail: "",
   },
   {
@@ -193,7 +196,7 @@ export const videos: VideoConfig[] = [
     title: "слушаем дождь",
     category: "music",
     description: "успокойся",
-    url: "",
+    url: "https://pub-edd3c6d87dbd445385a78a48b7699ec2.r2.dev/rain.mp4",
     thumbnail: "",
   },
   {
