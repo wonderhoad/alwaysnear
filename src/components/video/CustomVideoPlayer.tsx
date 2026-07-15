@@ -29,6 +29,8 @@ export function CustomVideoPlayer({ video }: CustomVideoPlayerProps) {
   const hasVideo = Boolean(video.url);
   const isRemoteVideo = /^https?:\/\//.test(video.url);
   const poster = video.thumbnail || undefined;
+  const isLandscape =
+    video.id === "family_movie" || video.categoryId === "family-movie";
 
   useEffect(() => {
     setVideoLoaded(false);
@@ -98,7 +100,11 @@ export function CustomVideoPlayer({ video }: CustomVideoPlayerProps) {
     <PageTransition className="relative min-h-[100dvh]">
       <PastelBackground />
 
-      <div className="mx-auto flex min-h-[100dvh] max-w-lg flex-col items-center justify-center gap-8 px-5 py-10">
+      <div
+        className={`mx-auto flex min-h-[100dvh] flex-col items-center justify-center gap-8 px-5 py-10 ${
+          isLandscape ? "max-w-3xl" : "max-w-lg"
+        }`}
+      >
         <AnimatePresence mode="wait">
           {!hasEnded ? (
             <motion.div
@@ -109,7 +115,7 @@ export function CustomVideoPlayer({ video }: CustomVideoPlayerProps) {
               transition={{ duration: 0.45 }}
               className="w-full"
             >
-              <IPhoneFrame>
+              <IPhoneFrame orientation={isLandscape ? "landscape" : "portrait"}>
                 {hasVideo && !videoError && (
                   <video
                     key={`${video.id}-${useCrossOrigin ? "cors" : "direct"}`}
